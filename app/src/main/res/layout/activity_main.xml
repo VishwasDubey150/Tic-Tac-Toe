@@ -35,7 +35,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="210dp"
         android:elevation="50dp"
-        android:onClick="play"
+        android:onClick="one_player"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
@@ -57,6 +57,7 @@
         android:background="@drawable/p_btn"
         android:text="2 Players"
         android:textAllCaps="false"
+        android:onClick="two_player"
         android:textColor="@color/white"
         android:textSize="40dp"
         android:fontFamily="@font/squada_one">
