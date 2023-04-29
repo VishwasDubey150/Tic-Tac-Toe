@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-20dp"
+        android:fontFamily="@font/squada_one"
+        android:text="Tic-Tac-Toe"
+        android:textColor="@color/black"
+        android:textSize="60dp">
+    </TextView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="210dp"
+        android:elevation="50dp"
+        android:onClick="play"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/black"
+        android:background="@drawable/p_btn"
+        android:text="vs CPU"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:fontFamily="@font/squada_one">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="210dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
+        android:background="@drawable/p_btn"
+        android:text="2 Players"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:fontFamily="@font/squada_one">
+    </androidx.appcompat.widget.AppCompatButton>
+</androidx.appcompat.widget.LinearLayoutCompat>
