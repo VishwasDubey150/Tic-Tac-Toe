@@ -1,5 +1,6 @@
 package com.example.tictactoe
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,8 +15,7 @@ var playerturn=true
 class playground : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlaygroundBinding
-    var player1count = 0
-    var player2count = 0
+
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
     var emptyCells = ArrayList<Int>()
@@ -26,6 +26,17 @@ class playground : AppCompatActivity() {
         binding = ActivityPlaygroundBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        if(singleplayer)
+        {
+            binding.ll1.visibility=View.GONE
+            binding.ll2.visibility=View.GONE
+        }
+        else
+        {
+            binding.tVscpu.visibility=View.GONE
+            binding.arr2.visibility=View.INVISIBLE
+        }
 
         binding.reset.setOnClickListener {
             reset()
@@ -78,7 +89,7 @@ class playground : AppCompatActivity() {
             }
 
             playerturn = false
-            Handler().postDelayed(Runnable { playerturn = true }, 500)
+            Handler().postDelayed(Runnable { playerturn = true }, 0)
             playNow(but, cellid)
 
         }
@@ -86,23 +97,27 @@ class playground : AppCompatActivity() {
 
     private fun playNow(buttonSelected: Button, currcell: Int) {
         if (activeUser == 1) {
+            binding.arr2.visibility=View.VISIBLE
+            binding.arr1.visibility=View.INVISIBLE
             buttonSelected.text = "X"
             buttonSelected.setTextColor(Color.parseColor("#000000"))
             player1.add(currcell)
             emptyCells.add(currcell)
             buttonSelected.isEnabled = false
 
-            Handler().postDelayed(Runnable { }, 200)
+            Handler().postDelayed(Runnable { }, 0)
 
             val checkWinnner = checkWinner()
             if (checkWinnner == 1) {
                 Handler().postDelayed(Runnable { reset() }, 2000)
             } else if (singleplayer) {
-                Handler().postDelayed(Runnable { robot() }, 500)
+                Handler().postDelayed(Runnable { robot() }, 0)
             } else {
                 activeUser = 0
             }
         } else {
+            binding.arr1.visibility=View.VISIBLE
+            binding.arr2.visibility=View.INVISIBLE
             buttonSelected.text = "0"
             buttonSelected.setTextColor(Color.parseColor("#000000"))
             player2.add(currcell)
@@ -121,10 +136,6 @@ class playground : AppCompatActivity() {
         }
     }
 
-    private fun robot() {
-        TODO("Not yet implemented")
-    }
-
     private fun checkWinner(): Int {
         if ((player1.contains(1) && player1.contains(2) && player1.contains(3)) ||
             (player1.contains(4) && player1.contains(5) && player1.contains(6)) ||
@@ -135,9 +146,6 @@ class playground : AppCompatActivity() {
             (player1.contains(1) && player1.contains(5) && player1.contains(9)) ||
             (player1.contains(7) && player1.contains(5) && player1.contains(3))
         ) {
-            player1count += 1
-            buttonDisabled()
-            disablereset()
 
             val build = AlertDialog.Builder(this)
             build.setTitle("Game Over")
@@ -161,9 +169,6 @@ class playground : AppCompatActivity() {
             (player2.contains(1) && player2.contains(5) && player2.contains(9)) ||
             (player2.contains(7) && player2.contains(5) && player2.contains(3))
         ) {
-            player2count += 1
-            buttonDisabled()
-            disablereset()
 
             val build = AlertDialog.Builder(this)
             build.setTitle("Game Over")
@@ -182,8 +187,6 @@ class playground : AppCompatActivity() {
         else if(emptyCells.contains(1)&&emptyCells.contains(2)&&emptyCells.contains(3)&&emptyCells.contains(4)&&emptyCells.contains(5)&&
             emptyCells.contains(9)&&emptyCells.contains(8)&&emptyCells.contains(7)&&emptyCells.contains(6))
         {
-            buttonDisabled()
-            disablereset()
 
             val build = AlertDialog.Builder(this)
             build.setTitle("Game Over")
@@ -203,19 +206,20 @@ class playground : AppCompatActivity() {
     }
 
     private fun quit() {
-
+        startActivity(Intent(this@playground,MainActivity::class.java))
+        finish()
     }
 
-    private fun disablereset() {
-        player1.clear()
-        player2.clear()
-        emptyCells.clear()
-        activeUser=1
-
-        for(i in 1..9)
+    private fun robot()
+    {
+        val rnd = (1..9).random()
+        if (emptyCells.contains(rnd))
         {
-            var buttonSelected:Button?
-            buttonSelected=when(i)
+            robot()
+        }
+        else
+        {
+            val btnselected=when(rnd)
             {
                 1 -> binding.btn1
                 2 -> binding.btn2
@@ -228,16 +232,26 @@ class playground : AppCompatActivity() {
                 9 -> binding.btn9
 
                 else
-                    ->
+                ->
                 {
                     binding.btn1
                 }
+            }
 
+            emptyCells.add(rnd)
+            btnselected.text="0"
+            btnselected.setTextColor(Color.parseColor("#000000"))
+            player2.add(rnd)
+            btnselected.isEnabled=false
+
+            val checkWinnner = checkWinner()
+            if (checkWinnner == 1) {
+                Handler().postDelayed(Runnable { reset() }, 1000)
+            }
+            else {
+                activeUser = 1
             }
         }
-    }
-
-    private fun buttonDisabled() {
 
     }
 }
