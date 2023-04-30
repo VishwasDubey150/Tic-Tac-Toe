@@ -244,7 +244,7 @@ class playground : AppCompatActivity() {
             player2.add(rnd)
             btnselected.isEnabled=false
 
-            val checkWinnner = checkWinner()
+            val checkWinnner = checkWinner_vs_cpu()
             if (checkWinnner == 1) {
                 Handler().postDelayed(Runnable { reset() }, 1000)
             }
@@ -252,6 +252,76 @@ class playground : AppCompatActivity() {
                 activeUser = 1
             }
         }
+
+    }
+
+    private fun checkWinner_vs_cpu(): Int {
+        if ((player1.contains(1) && player1.contains(2) && player1.contains(3)) ||
+            (player1.contains(4) && player1.contains(5) && player1.contains(6)) ||
+            (player1.contains(7) && player1.contains(8) && player1.contains(9)) ||
+            (player1.contains(1) && player1.contains(4) && player1.contains(7)) ||
+            (player1.contains(2) && player1.contains(5) && player1.contains(8)) ||
+            (player1.contains(3) && player1.contains(6) && player1.contains(9)) ||
+            (player1.contains(1) && player1.contains(5) && player1.contains(9)) ||
+            (player1.contains(7) && player1.contains(5) && player1.contains(3))
+        ) {
+
+            val build = AlertDialog.Builder(this)
+            build.setTitle("Game Over")
+            build.setMessage("You won \n\n" + "Do you want to play again")
+            build.setPositiveButton("Yup") { dialog, which ->
+                reset()
+            }
+
+            build.setNegativeButton("Nope") { dialog, which ->
+                quit()
+            }
+            build.show()
+            return 1
+        }
+        if ((player2.contains(1) && player2.contains(2) && player2.contains(3)) ||
+            (player2.contains(4) && player2.contains(5) && player2.contains(6)) ||
+            (player2.contains(7) && player2.contains(8) && player2.contains(9)) ||
+            (player2.contains(1) && player2.contains(4) && player2.contains(7)) ||
+            (player2.contains(2) && player2.contains(5) && player2.contains(8)) ||
+            (player2.contains(3) && player2.contains(6) && player2.contains(9)) ||
+            (player2.contains(1) && player2.contains(5) && player2.contains(9)) ||
+            (player2.contains(7) && player2.contains(5) && player2.contains(3))
+        ) {
+
+            val build = AlertDialog.Builder(this)
+            build.setTitle("Game Over")
+            build.setMessage("You lost \n\n" + "Do you want to play again")
+            build.setPositiveButton("Yup") { dialog, which ->
+                reset()
+            }
+
+            build.setNegativeButton("Nope") { dialog, which ->
+                quit()
+            }
+            build.show()
+            return 1
+        }
+
+        else if(emptyCells.contains(1)&&emptyCells.contains(2)&&emptyCells.contains(3)&&emptyCells.contains(4)&&emptyCells.contains(5)&&
+            emptyCells.contains(9)&&emptyCells.contains(8)&&emptyCells.contains(7)&&emptyCells.contains(6))
+        {
+
+            val build = AlertDialog.Builder(this)
+            build.setTitle("Game Over")
+            build.setMessage("Game Draw \n\n" + "Do you want to play again")
+            build.setPositiveButton("Yup") { dialog, which ->
+                reset()
+            }
+
+            build.setNegativeButton("Nope") { dialog, which ->
+                quit()
+            }
+            build.show()
+            return 1;
+        }
+        return 0;
+
 
     }
 }
