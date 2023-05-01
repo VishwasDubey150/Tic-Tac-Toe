@@ -24,4 +24,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this@MainActivity,playground::class.java))
     }
 
+    fun online(view: View) {
+        singleplayer=false
+        startActivity(Intent(this@MainActivity,code_generator::class.java))
+    }
+
 }

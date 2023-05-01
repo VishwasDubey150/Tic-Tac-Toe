@@ -5,76 +5,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".code_generator"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    
+    <EditText
+        android:id="@+id/code_id"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="-20dp"
+        android:hint="Enter code"
         android:fontFamily="@font/squada_one"
-        android:text="Tic-Tac-Toe"
+        android:textSize="40dp"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:elevation="20dp"
+        android:padding="15dp"
+        android:background="@color/white"
         android:textColor="@color/black"
-        android:textSize="60dp">
-    </TextView>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="200dp">
+    </EditText>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/create"
         android:layout_width="210dp"
         android:elevation="50dp"
-        android:onClick="one_player"
+        android:onClick="create"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/black"
         android:background="@drawable/p_btn"
-        android:text="vs CPU"
+        android:text="Create"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:fontFamily="@font/squada_one">
+    </androidx.appcompat.widget.AppCompatButton>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/join"
+        android:layout_width="210dp"
+        android:elevation="50dp"
+        android:onClick="join"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/black"
+        android:background="@drawable/p_btn"
+        android:text="Join"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="40dp"
         android:fontFamily="@font/squada_one">
     </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="210dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/black"
-        android:background="@drawable/p_btn"
-        android:text="2 Players"
-        android:textAllCaps="false"
-        android:onClick="two_player"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        android:fontFamily="@font/squada_one">
-    </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="210dp"
-        android:layout_height="70dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pb"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="-300dp"
+
+        android:backgroundTint="#000000"
+        app:cardElevation="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/black"
-        android:background="@drawable/p_btn"
-        android:text="Online"
-        android:textAllCaps="false"
-        android:onClick="online"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        android:fontFamily="@font/squada_one">
-    </androidx.appcompat.widget.AppCompatButton>
+        app:cardCornerRadius="15dp">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            >
+        </ProgressBar>
+    </androidx.cardview.widget.CardView>
+
 </androidx.appcompat.widget.LinearLayoutCompat>
