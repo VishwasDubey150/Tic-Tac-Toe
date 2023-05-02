@@ -321,7 +321,5 @@ class playground : AppCompatActivity() {
             return 1;
         }
         return 0;
-
-
     }
 }

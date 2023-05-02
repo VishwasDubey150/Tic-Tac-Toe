@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this@MainActivity,playground::class.java))
     }
 
-    fun two_player(view: View) {
-
+    fun two_player(view: View) {  
         singleplayer=false
         startActivity(Intent(this@MainActivity,playground::class.java))
     }
